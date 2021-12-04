@@ -2,16 +2,16 @@
 // Assignment code here
 
 
+
+
+function generatePassword() {
+
 var passwordLength = window.prompt ("Enter number of characters");
 var confirmLc = window.confirm ("Use lowercase letters?");
 var confirmUc = window.confirm ("Use uppercase letters?");
 var confirmNum = window.confirm ("Use numbers?");
 var confirmSym = window.confirm ("Use symbols?");
 
-
-
-
-var failsafe = function () {
   const checkConfirm = [confirmLc, confirmUc, confirmNum, confirmSym].filter(Boolean);
   if (checkConfirm < 1) {
     return alert("Not enough parameters selected to run generator");
@@ -22,13 +22,8 @@ var failsafe = function () {
   if (passwordLength > 128) {
     return alert("Password should be between 8-128 characters.");
   }
-  console.log(checkConfirm)
+  // console.log(checkConfirm)
   }
-  
-failsafe ();
-
-
-
 
 
 
@@ -48,7 +43,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
 
 
 
