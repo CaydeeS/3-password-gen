@@ -6,7 +6,7 @@ const lowerc = "abcdefghijklmnopqrstuvwxyz";
 const upperc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const symbols = "!#$%&'()*+,-./:;<=>?@[^_`{|}~"
 
-const passwordLength = "";
+var passwordLength = "";
 
 
 // Get references to the #generate element
@@ -33,23 +33,23 @@ function generatePassword() {
   var confirmSym = window.confirm ("Use symbols?");
     
 
-//failsafe selection prompts
+//failsafe selection prompts & password length restriction
   const checkConfirm = [confirmLc, confirmUc, confirmNum, confirmSym].filter(Boolean);
   if (checkConfirm < 1) {
     return ("Not enough parameters selected to run generator");
   }
-  if (passwordLength < 8) {
+  if (passwordLength < 8 || passwordLength > 128) {
     return ("Password must be between 8-128 characters.");
   }
-  if (passwordLength > 128) {
-    return ("Password must be between 8-128 characters.");
-  }
+  else {password.length = passwordLength};
+  // if (passwordLength > 128) {
+  //   return ("Password must be between 8-128 characters.");
+  // }
   
-//password length restriction
-  if (passwordLength >= 8 && passwordLength <= 128) {
-    password.length = passwordLength;
+//   if (passwordLength >= 8 && passwordLength <= 128) {
+//     password.length = passwordLength;
    
-}
+// }
 
 //generating password
   if (confirmLc === true) {
@@ -75,63 +75,3 @@ function generatePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function generatePassword() {
-//   // run if characters is >8
-//   if (passwordLength > 8) {
-//   }
-//   else {
-//     window.alert('Password should be between 8-128 characters.');
-//   }
-// }
-//    // if less than 8 or more than 128 dont generate a password
-//     //if all are chosen false dont generate a password
-//   //run if at least one true
-
-
-
-// generatePassword();
-// console.log(generatePassword);
-
-// // // Write password to the #password input
-// // function writePassword() {
-// //   var password = generatePassword();
-// //   var passwordText = document.querySelector("#password");
-
-// //   passwordText.value = password;
-
-// // }
-
-
-// // // Add event listener to generate button
-// // generateBtn.addEventListener("click", writePassword);
