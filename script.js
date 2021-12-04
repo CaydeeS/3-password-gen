@@ -1,12 +1,13 @@
 
 // Assignment code here
 
-var numbers = "0123456789";
-var lowerc = "abcdefghijklmnopqrstuvwxyz";
-var upperc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var symbols = "!#$%&'()*+,-./:;<=>?@[^_`{|}~"
+const numbers = "0123456789";
+const lowerc = "abcdefghijklmnopqrstuvwxyz";
+const upperc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const symbols = "!#$%&'()*+,-./:;<=>?@[^_`{|}~"
 
-var passwordLength = "";
+const passwordLength = "";
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -22,50 +23,55 @@ function writePassword() {
 
 function generatePassword() {
 
-  var passwordLengthPrompt = window.prompt ("Enter number of characters");
+    passwordCriteria = "";
+    compiledPassword = "";
+
+  var passwordLength = window.prompt ("Enter number of characters");
   var confirmLc = window.confirm ("Use lowercase letters?");
   var confirmUc = window.confirm ("Use uppercase letters?");
   var confirmNum = window.confirm ("Use numbers?");
   var confirmSym = window.confirm ("Use symbols?");
-
-  var compiledPassword = "";
+    
 
 //failsafe selection prompts
   const checkConfirm = [confirmLc, confirmUc, confirmNum, confirmSym].filter(Boolean);
   if (checkConfirm < 1) {
     return ("Not enough parameters selected to run generator");
   }
-  if (passwordLengthPrompt < 8) {
+  if (passwordLength < 8) {
     return ("Password must be between 8-128 characters.");
   }
-  if (passwordLengthPrompt > 128) {
+  if (passwordLength > 128) {
     return ("Password must be between 8-128 characters.");
   }
+  
 //password length restriction
-  if (passwordLengthPrompt >= 8 && passwordLengthPrompt <= 128) {
+  if (passwordLength >= 8 && passwordLength <= 128) {
+    password.length = passwordLength;
    
 }
 
 //generating password
-if (confirmLc === true) {
-  compiledPassword += lowerc;
+  if (confirmLc === true) {
+  passwordCriteria += lowerc;
 }
-if (confirmUc === true) {
-  compiledPassword += upperc;
+  if (confirmUc === true) {
+  passwordCriteria += upperc;
 }
-if (confirmNum === true) {
-  compiledPassword += numbers;
+  if (confirmNum === true) {
+  passwordCriteria += numbers;
 }
-if (confirmSym === true) {
-  compiledPassword += symbols;
+  if (confirmSym === true) {
+  passwordCriteria += symbols;
 }
+  for (var i = 0; i < passwordLength; i++) {
+    compiledPassword += passwordCriteria [Math.floor(Math.random() * passwordCriteria.length)];
+    console.log(compiledPassword);
+  }
 
   return compiledPassword;
   
 }
-
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
